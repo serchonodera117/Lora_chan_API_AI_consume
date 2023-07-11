@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 using VRM;
+using JetBrains.Annotations;
 
 public class Animation_Script : MonoBehaviour
 {
     private Animator anim;
+    private bool isListening = false;
+
+
     public SkinnedMeshRenderer skinnedMeshRenderer;
+    public Sprite listenigAbled;
+    public Sprite listenigDisabled;
+    public Button btnListening;
+    public TextMeshProUGUI listeningMessage;
+    public TMP_InputField  writingTextBox; 
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +48,27 @@ public class Animation_Script : MonoBehaviour
                 clipLength = clip.length;
             }
         }
-
         yield return new WaitForSeconds(clipLength);
         anim.SetTrigger("idle");
-        if(nameAnimation=="Standing_Greeting"){anim.SetTrigger("face_base");}//after frist greeting, return to nomral smile
+        anim.SetTrigger("face_base");//after frist greeting, return to nomral smile
     }
 
+    public void activate_disactivate_listening()
+    {
+        isListening = !isListening;
+
+        if (isListening)
+        {
+           btnListening.image.sprite = listenigAbled;
+            listeningMessage.text = "Listening";
+            writingTextBox.readOnly = true;
+        }
+        else
+        {
+            listeningMessage.text = "Not Listening";
+            btnListening.image.sprite = listenigDisabled;
+            writingTextBox.readOnly = false;
+        }
+    }
 }
 
