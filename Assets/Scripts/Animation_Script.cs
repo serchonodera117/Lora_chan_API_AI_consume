@@ -53,6 +53,16 @@ public class Animation_Script : MonoBehaviour
         anim.SetTrigger("face_base");//after frist greeting, return to nomral smile
     }
 
+    public void loop_bodyAnimation(string nameExpression)
+    {
+        anim.SetTrigger(nameExpression);
+    }
+
+    public void loop_FaceExpressions(string nameExpression)
+    {
+        anim.SetTrigger(nameExpression);
+    }
+
     public void activate_disactivate_listening()
     {
         isListening = !isListening;
@@ -62,12 +72,16 @@ public class Animation_Script : MonoBehaviour
            btnListening.image.sprite = listenigAbled;
             listeningMessage.text = "Listening";
             writingTextBox.readOnly = true;
+            loop_bodyAnimation("idle_listening");
+            loop_FaceExpressions("face_listening");
         }
         else
         {
             listeningMessage.text = "Not Listening";
             btnListening.image.sprite = listenigDisabled;
             writingTextBox.readOnly = false;
+            loop_bodyAnimation("idle");
+            loop_FaceExpressions("face_base");
         }
     }
 }
