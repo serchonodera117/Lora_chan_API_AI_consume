@@ -13,10 +13,18 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638245426262383880
-    m_Hash: 1277980049
+      ticks: 638246504768681159
+    m_Hash: 1703365022
 m_EmbeddedPackageManifests:
-  m_ManifestsStatus: {}
+  m_ManifestsStatus:
+    D:/LENGUAJES_DE_PROGRAMACION/Unity/Lora_chan_AI/Packages/com.lmnt.unity/package.json:
+      m_FilePath: D:/LENGUAJES_DE_PROGRAMACION/Unity/Lora_chan_AI/Packages/com.lmnt.unity/package.json
+      m_PathExists: 1
+      m_ContentTrackingEnabled: 1
+      m_ModificationDate:
+        serializedVersion: 2
+        ticks: 638229672310000000
+      m_Hash: 4057797181
 m_LocalPackages:
   m_LocalFileStatus: []
 m_ProjectPath: D:/LENGUAJES_DE_PROGRAMACION/Unity/Lora_chan_AI/Packages
@@ -2602,6 +2610,61 @@ m_ResolvedPackages:
     deprecationMessage: 
   isDeprecated: 0
   deprecationMessage: 
+- packageId: com.lmnt.unity@file:D:\LENGUAJES_DE_PROGRAMACION\Unity\Lora_chan_AI\Packages\com.lmnt.unity
+  testable: 1
+  isDirectDependency: 1
+  version: 0.1.0
+  source: 3
+  resolvedPath: D:\LENGUAJES_DE_PROGRAMACION\Unity\Lora_chan_AI\Packages\com.lmnt.unity
+  assetPath: Packages/com.lmnt.unity
+  name: com.lmnt.unity
+  displayName: LMNT AI Speech
+  author:
+    name: LMNT
+    email: hello+unity@lmnt.com
+    url: https://www.lmnt.com
+  category: 
+  type: 
+  description: An AI speech package for Unity.
+  status: 0
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    recommended: 
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - dialogue
+  - speech
+  - voice
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: https://r.lmnt.com/unity/docs
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.modules.subsystems@1.0.0
   testable: 0
   isDirectDependency: 0
@@ -3112,6 +3175,7 @@ m_ResolvedPackages:
     - 1.3.4
     - 1.3.5
     - 1.3.7
+    - 1.3.8
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -3125,6 +3189,7 @@ m_ResolvedPackages:
     - 1.3.4
     - 1.3.5
     - 1.3.7
+    - 1.3.8
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
