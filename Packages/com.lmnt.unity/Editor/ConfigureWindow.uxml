@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.lmnt.unity/Editor/ConfigureWindow.uss?fileID=7433441132597879392&amp;guid=02ba2f84f2bd84c8ab7b3ff4ba580b0f&amp;type=3#ConfigureWindow" />
+    <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); width: 350px; align-self: center;">
+        <ui:Label tabindex="-1" text="Use this screen to configure your API key. Press the &quot;Save&quot; button after pasting your key into the input box below." display-tooltip-when-elided="true" class="margin" style="margin-bottom: 12px; flex-wrap: wrap; white-space: normal;" />
+        <ui:TextField picking-mode="Ignore" label="Paste your API key:" name="textApiKey" class="margin" style="height: 21px; align-items: stretch;" />
+        <ui:Button text="Get an API key..." display-tooltip-when-elided="true" name="btnGetKey" class="margin" style="height: 30px;" />
+        <ui:Button text="Save" display-tooltip-when-elided="true" name="btnSave" class="margin" style="height: 30px;" />
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="lblError" class="margin" style="color: rgb(214, 92, 92);" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,28 @@
+{
+  "name": "com.lmnt.unity",
+  "version": "0.1.0",
+  "displayName": "LMNT AI Speech",
+  "description": "An AI speech package for Unity.",
+  "unity": "2021.3",
+  "unityRelease": "27f1",
+  "documentationUrl": "https://r.lmnt.com/unity/docs",
+  "changelogUrl": "https://r.lmnt.com/unity/changelog",
+  "licensesUrl": "https://r.lmnt.com/unity/licenses",
+  "dependencies": {
+  },
+  "keywords": [
+    "dialogue",
+    "speech",
+    "voice"
+  ],
+  "author": {
+    "name": "LMNT",
+    "email": "hello+unity@lmnt.com",
+    "url": "https://www.lmnt.com"
+  },
+  "samples": [{
+    "displayName": "LMNT Demo Scene",
+    "description": "A basic scene demonstrating how to use LMNT in a project.",
+    "path": "Samples~/LMNT Demo"
+  }]
+}

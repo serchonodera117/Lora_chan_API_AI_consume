@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:DropdownField label="Voice:" index="0" name="voice" binding-path="voice" style="height: 17px;" />
+    <ui:TextField label="Dialogue:" name="dialogue" binding-path="dialogue" multiline="true" style="flex-wrap: wrap;" />
+</ui:UXML>

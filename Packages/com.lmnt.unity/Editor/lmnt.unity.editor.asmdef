@@ -1,0 +1,18 @@
+{
+    "name": "lmnt.unity.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8524a6d15cc754bf697def5b86f3b62e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
