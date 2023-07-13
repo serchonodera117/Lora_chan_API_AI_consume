@@ -2,13 +2,16 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>9.0</LangVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{DAF3BCB7-F236-1F26-87AF-A332B84B5F9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -61,6 +64,7 @@
     <Compile Include="Assets\Scripts\Animation_Script.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\VRMShaders\VRM10\MToon10\Resources\VRM10\vrmc_materials_mtoon.shader" />
@@ -104,8 +108,76 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\VRMShaders\VRM10\MToon10\Resources\VRM10\vrmc_materials_mtoon_define.hlsl" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Binder.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Http, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Http.6.0.0\lib\net461\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.ConfigurationExtensions.6.0.0\lib\net461\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Net.Http.Json.6.0.0\lib\net461\System.Net.Http.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.6.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -373,9 +445,6 @@
     <Reference Include="System.AppContext">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.AppContext.dll</HintPath>
     </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Buffers.dll</HintPath>
-    </Reference>
     <Reference Include="System.Collections.Concurrent">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Collections.Concurrent.dll</HintPath>
     </Reference>
@@ -493,9 +562,6 @@
     <Reference Include="System.Linq.Queryable">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Linq.Queryable.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Memory.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.Http.dll</HintPath>
     </Reference>
@@ -528,9 +594,6 @@
     </Reference>
     <Reference Include="System.Net.WebSockets">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Net.WebSockets.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics.Vectors">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.ObjectModel">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ObjectModel.dll</HintPath>
@@ -640,9 +703,6 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Threading.Tasks.Parallel">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Tasks.Parallel.dll</HintPath>
     </Reference>
@@ -654,9 +714,6 @@
     </Reference>
     <Reference Include="System.Threading.Timer">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Threading.Timer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.ReaderWriter">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.2.17f1\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Xml.ReaderWriter.dll</HintPath>
@@ -832,6 +889,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+  <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+    <Error Condition="!Exists('packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
+  </Target>
+  <Import Project="packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
