@@ -26,9 +26,9 @@ using Unity.VisualScripting;
 
 public class Animation_Script : MonoBehaviour
 {
-    private const string APIKey = "";
+    private const string APIKey = "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";
     private const string ChatGPTEndpoint = "https://api.openai.com/v1/chat/completions";
-    private const string organization = "";
+    private const string organization = "org-xOqg73sNLyQIed711Dv0FMFl";
 
 
     [DllImport("user32.dll")]
@@ -56,6 +56,8 @@ public class Animation_Script : MonoBehaviour
     public TextMeshProUGUI listeningMessage;
     public TMP_InputField writingTextBox;
 
+    //----comand voice variable string
+    private string nameAppToOpen = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -135,7 +137,9 @@ public class Animation_Script : MonoBehaviour
             isComandActive = true;
             voicerecognicer.Start();
             //dictationRecognizer.Start();
-            StartCoroutine(openNotepad("Mensaje escrito UW U"));
+            //nameAppToOpen = "brave";
+            //OpenWordApp();
+            addCommmand();
         }
         else
         {
@@ -243,7 +247,7 @@ public class Animation_Script : MonoBehaviour
                     new ChatGptMessage
                     {
                         role="system",
-                        content="You are a helpful assistant"
+                        content="You are a helpful assistant known as Lora-Chan"
                     },
                     new ChatGptMessage
                     {
@@ -312,8 +316,64 @@ public class Animation_Script : MonoBehaviour
         File.Delete(tempFilepath);
     }
 
-}
 
+    //----------------------------------------------Functions for commands
+    //-----generic command open
+    public void OpenWordApp()
+    {
+        Process.Start(nameAppToOpen+".exe");
+    }
+    //write json
+    public void addCommmand()
+    {
+        string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
+
+        if (File.Exists(ruta))
+        {
+            string json = File.ReadAllText(ruta);
+            CommandData data = JsonUtility.FromJson<CommandData>(json);
+            data.commandList.Add(
+                    new Commando
+                    {
+                        nombre = "brave"
+                    }
+                ); 
+           var updatedJson = JsonUtility.ToJson(data);
+            File.WriteAllText(ruta, updatedJson);
+            UnityEngine.Debug.Log(updatedJson);
+        }
+        else
+        {
+            UnityEngine.Debug.Log("File DOES NOT EXIST");
+
+            var DataCommand = new CommandData
+            {
+                commandList = new List<Commando>
+                {
+                    new Commando
+                    {
+                        nombre="chrome"
+                    }
+                }
+            };
+            var json = JsonUtility.ToJson(DataCommand);
+            File.WriteAllText(ruta, json);
+        }
+
+    }
+
+}
+[System.Serializable]
+public class Commando
+{
+    public string nombre;
+}
+[System.Serializable]
+
+public class CommandData
+{
+    public List<Commando> commandList;
+}
 
 [System.Serializable]
 public class ChatGptRequestData
