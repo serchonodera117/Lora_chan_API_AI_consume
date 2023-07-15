@@ -19,16 +19,13 @@ using System.Runtime.InteropServices;
 using UnityEditor.VersionControl;
 using System.IO;
 using Unity.VisualScripting;
-
-
-
-
+using TMPro.EditorUtilities;
 
 public class Animation_Script : MonoBehaviour
 {
-    private const string APIKey = "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";
+    private const string APIKey = ""; //your API KEY
     private const string ChatGPTEndpoint = "https://api.openai.com/v1/chat/completions";
-    private const string organization = "org-xOqg73sNLyQIed711Dv0FMFl";
+    private const string organization = ""; //your Organization ID
 
 
     [DllImport("user32.dll")]
@@ -40,6 +37,7 @@ public class Animation_Script : MonoBehaviour
     private SpVoice voice = new SpVoice();
     private bool isDictationActive = false;
     private bool isComandActive = false;
+    private bool isComandSettinsActive = false;
 
     private Dictionary<string, Action> fristCommand;
     private KeywordRecognizer voicerecognicer;
@@ -55,18 +53,21 @@ public class Animation_Script : MonoBehaviour
     public Button btnListening;
     public TextMeshProUGUI listeningMessage;
     public TMP_InputField writingTextBox;
+    public GameObject panelCommands;
 
     //----comand voice variable string
     private string nameAppToOpen = "";
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+        panelCommands.SetActive(false);//ocultar
+
         writingTextBox.text = "";
         fristCommand = new Dictionary<string, Action>();
         fristCommand.Add("lora chan", prepareTotakeInstructions);
         fristCommand.Add("lora", prepareTotakeInstructions);
-
-
+        LoadSavedCommnads();
 
         voicerecognicer = new KeywordRecognizer(fristCommand.Keys.ToArray());
         voicerecognicer.OnPhraseRecognized += onRecognizeLORAcommand;
@@ -76,7 +77,6 @@ public class Animation_Script : MonoBehaviour
 
         PhraseRecognitionSystem.Restart();
 
-        anim = GetComponent<Animator>();
         StartCoroutine(no_loop_bodyAimation("greeting", "Standing_Greeting")); //call the function with timmer to count aniamtion seconds
         anim.SetTrigger("face_greeting");
     }
@@ -92,9 +92,9 @@ public class Animation_Script : MonoBehaviour
     }
 
 
-    //-----------------------------Animations
+    //---------------------------------------------------------------------------------------Animations
 
-    public IEnumerator no_loop_bodyAimation(string nameExpression, string nameAnimation)
+    public IEnumerator no_loop_bodyAimation(string nameExpression, string nameAnimation)//beining 
     {
         anim.SetTrigger(nameExpression);
         AnimationClip[] animationLenght = anim.runtimeAnimatorController.animationClips;
@@ -112,7 +112,22 @@ public class Animation_Script : MonoBehaviour
         anim.SetTrigger("face_base");//after frist greeting, return to nomral smile
 
     }
-
+    public IEnumerator no_loop_bodyGENERICANIM(string nameExpression, string nameAnimation)//generic
+    {
+        anim.SetTrigger(nameExpression);
+        AnimationClip[] animationLenght = anim.runtimeAnimatorController.animationClips;
+        float clipLength = 0f;
+        foreach (AnimationClip clip in animationLenght)
+        {
+            if (clip.name == nameAnimation)
+            {
+                clipLength = clip.length;
+            }
+        }
+        yield return new WaitForSeconds(clipLength);
+        anim.SetTrigger("idle");
+        anim.SetTrigger("face_base");//after frist greeting, return to nomral smile
+    }
     public void loop_bodyAnimation(string nameExpression)
     {
         anim.SetTrigger(nameExpression);
@@ -139,7 +154,7 @@ public class Animation_Script : MonoBehaviour
             //dictationRecognizer.Start();
             //nameAppToOpen = "brave";
             //OpenWordApp();
-            addCommmand();
+            //addCommmand();
         }
         else
         {
@@ -159,9 +174,11 @@ public class Animation_Script : MonoBehaviour
     {
         loop_FaceExpressions("face_talking");
         isTalking = true;
-        float charactersPerSecond = 15f;
+        float charactersPerSecond = 10f;
         float duration = theSpeech.Length / charactersPerSecond;
         secondsTak = duration;
+
+        UnityEngine.Debug.Log(secondsTak);
         voice.Speak(theSpeech, SpeechVoiceSpeakFlags.SVSFlagsAsync);
     }
 
@@ -175,10 +192,10 @@ public class Animation_Script : MonoBehaviour
     }
     public void onRecognizeLORAcommand(PhraseRecognizedEventArgs word)//executes prepareTotakeInstructions
     {
-        if (isComandActive) { voicerecognicer.Stop(); isComandActive = false; }
-        if (isDictationActive) { dictationRecognizer.Stop(); isComandActive = false; }
-
+        string[] wordArray = word.text.Split(' ');
+        nameAppToOpen = wordArray[1];
         fristCommand[word.text].Invoke();
+        UnityEngine.Debug.Log(nameAppToOpen);
     }
     public void prepareTotakeInstructions()//listening commands 
     {
@@ -317,11 +334,43 @@ public class Animation_Script : MonoBehaviour
     }
 
 
-    //----------------------------------------------Functions for commands
+    //------------------------------------------------------------------------------------------------------------Functions for commands
+    //-----Show or hide command settings
+    public void controllerContainerCommand()
+    {
+        isComandSettinsActive = !isComandSettinsActive;
+        panelCommands.SetActive(isComandSettinsActive);
+    }
+    //-----Load Commands
+    public void LoadSavedCommnads()
+    {
+        string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
+        if(File.Exists(ruta))
+        {
+            string json = File.ReadAllText(ruta);
+            CommandData data = JsonUtility.FromJson<CommandData>(json);
+
+            data.commandList.ForEach(command =>
+            {
+                if (!fristCommand.ContainsKey(command.nombre))
+                {
+                    fristCommand.Add($"abre {command.nombre}", OpenWordApp);
+                }
+            });
+        }
+    }
     //-----generic command open
     public void OpenWordApp()
     {
-        Process.Start(nameAppToOpen+".exe");
+        StartCoroutine(no_loop_bodyGENERICANIM("open_app","open_app"));
+        try
+        {
+             Process.Start(nameAppToOpen+".exe");
+        }catch (Exception e)
+        {
+            UnityEngine.Debug.Log(e.Message);
+            Talk($"Lo siento, no he podido abrir {nameAppToOpen}");
+        }
     }
     //write json
     public void addCommmand()
@@ -363,6 +412,8 @@ public class Animation_Script : MonoBehaviour
     }
 
 }
+
+//-------------------------Classes to convert to json
 [System.Serializable]
 public class Commando
 {
