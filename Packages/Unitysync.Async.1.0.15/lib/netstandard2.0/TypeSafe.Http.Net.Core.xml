@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Unitysync.Async</name>
+    </assembly>
+    <members>
+        <member name="M:Unitysync.Async.UnityAsyncCoroutines.ThrowIfIsCanceledOrErrored(System.Threading.Tasks.Task)">
+            <summary>
+            Throws exceptions if the task is canceled or errored.
+            </summary>
+            <param name="future">The future to check.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncHelperExtensions.DispatchContinuations``1(System.Collections.Generic.IEnumerable{System.Action{``0}},``0)">
+            <summary>
+            Dispatches the provided <see cref="!:continuations"/> using the provided
+            <see cref="!:value"/> as the <see cref="T:System.Action`1"/> parameter.
+            </summary>
+            <typeparam name="T">The Type of the value.</typeparam>
+            <param name="value">The value.</param>
+            <param name="continuations">The continuations to dispatch.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncHelperExtensions.DispatchContinuations(System.Collections.Generic.IEnumerable{System.Action})">
+            <summary>
+            Dispatches the provided <see cref="!:continuations"/>.
+            </summary>
+            <param name="continuations">The continuations to dispatch.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``1(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Action{``0})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``1(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Action{``0},System.Action{``0}[])">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <param name="optionalAdditionalContinuations">Optional additional continuations to schedule.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith(System.Threading.Tasks.Task,UnityEngine.MonoBehaviour,System.Action,System.Action[])">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            </summary>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <param name="optionalAdditionalContinuations">Optional additional continuations to schedule.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith(System.Threading.Tasks.Task,UnityEngine.MonoBehaviour,System.Action)">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            </summary>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``2(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Func{``0,``1})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            The method returns a future for the <see cref="!:continuation"/>'s return value.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future that wraps the value of the <see cref="!:continuation"/>'s result.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``2(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Func{``0,System.Threading.Tasks.Task{``1}})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            Additionally it will set the value and completion of the returned task when the provided <see cref="!:continuation"/>'s
+            returned Task is finished.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future for the provided <see cref="!:continuation"/>.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``2(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Func{``1})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            The method returns a future for the <see cref="!:continuation"/>'s return value.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future that wraps the value of the <see cref="!:continuation"/>'s result.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``2(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Func{System.Threading.Tasks.Task{``1}})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            Additionally it will set the value and completion of the returned task when the provided <see cref="!:continuation"/>'s
+            returned Task is finished.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future for the provided <see cref="!:continuation"/>.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``1(System.Threading.Tasks.Task,UnityEngine.MonoBehaviour,System.Func{``0})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            The method returns a future for the <see cref="!:continuation"/>'s return value.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future that wraps the value of the <see cref="!:continuation"/>'s result.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``1(System.Threading.Tasks.Task{``0},UnityEngine.MonoBehaviour,System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            The method returns a future for the <see cref="!:continuation"/>'s return value.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <param name="throwIfTaskFailed">Indicates if the managed resulting future should have the exception thrown if it throws.</param>
+            <returns>A future that wraps the value of the <see cref="!:continuation"/>'s result.</returns>
+        </member>
+        <member name="M:Unitysync.Async.UnityAsyncTaskExtensions.UnityAsyncContinueWith``1(System.Threading.Tasks.Task,UnityEngine.MonoBehaviour,System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Creates a continuation for the specified <see cref="T:System.Threading.Tasks.Task`1"/> that will
+            invoke the provided <see cref="!:continuation"/> when the <see cref="!:future"/> completes.
+            Additionally it will set the value and completion of the returned task when the provided <see cref="!:continuation"/>'s
+            returned Task is finished.
+            </summary>
+            <typeparam name="T">The Task's TResult type.</typeparam>
+            <typeparam name="TResult">The result type of the <see cref="T:System.Func`2"/> continuation.</typeparam>
+            <param name="future">The task.</param>
+            <param name="behaviour">The <see cref="T:UnityEngine.MonoBehaviour"/> to schedule this continuation to run in.</param>
+            <param name="continuation">The continuation.</param>
+            <returns>A future for the provided <see cref="!:continuation"/>.</returns>
+        </member>
+        <member name="T:Unitysync.Async.WaitForFuture">
+            <summary>
+            Waits for the provided <see cref="T:System.IAsyncResult"/> to be completed.
+            </summary>
+        </member>
+        <member name="P:Unitysync.Async.WaitForFuture.AsyncResult">
+            <summary>
+            The async result being tracked.
+            </summary>
+        </member>
+        <member name="P:Unitysync.Async.WaitForFuture.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:Unitysync.Async.WaitForFuture.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:Unitysync.Async.WaitForFuture.Reset">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -21,6 +21,7 @@ using System.IO;
 using Unity.VisualScripting;
 using TMPro.EditorUtilities;
 
+
 public class Animation_Script : MonoBehaviour
 {
     private const string APIKey = ""; //your API KEY
@@ -54,6 +55,8 @@ public class Animation_Script : MonoBehaviour
     public TextMeshProUGUI listeningMessage;
     public TMP_InputField writingTextBox;
     public GameObject panelCommands;
+    public Transform ScrollListCommand;
+    public GameObject CommandElement;
 
     //----comand voice variable string
     private string nameAppToOpen = "";
@@ -126,7 +129,6 @@ public class Animation_Script : MonoBehaviour
         }
         yield return new WaitForSeconds(clipLength);
         anim.SetTrigger("idle");
-        anim.SetTrigger("face_base");//after frist greeting, return to nomral smile
     }
     public void loop_bodyAnimation(string nameExpression)
     {
@@ -165,6 +167,8 @@ public class Animation_Script : MonoBehaviour
             loop_FaceExpressions("face_base");
             isComandActive = false;
             voicerecognicer.Stop();
+            dictationRecognizer.Stop();
+            dictationRecognizer.Dispose();
             //dictationRecognizer.Stop();
         }
     }
@@ -174,11 +178,12 @@ public class Animation_Script : MonoBehaviour
     {
         loop_FaceExpressions("face_talking");
         isTalking = true;
-        float charactersPerSecond = 10f;
+        float charactersPerSecond = 16f;
         float duration = theSpeech.Length / charactersPerSecond;
         secondsTak = duration;
 
         UnityEngine.Debug.Log(secondsTak);
+
         voice.Speak(theSpeech, SpeechVoiceSpeakFlags.SVSFlagsAsync);
     }
 
@@ -228,23 +233,23 @@ public class Animation_Script : MonoBehaviour
         dictationRecognizer.Dispose();
         isDictationActive = false;
 
-        loop_bodyAnimation("thinking");
 
 
-        //call an httpRequest
         if (!voicerecognicer.IsRunning)
         {
             PhraseRecognitionSystem.Restart();
             voicerecognicer.Start();
             isComandActive = true;
         }
+
+        StartCoroutine(readLoraResponse(text));
     }
     //request of buttom
     public void requestByButton()
     {
         string textBoxContent = writingTextBox.text.Trim();
         if (!string.IsNullOrEmpty(textBoxContent)) {
-            StartCoroutine(readLoraResponse(writingTextBox.text));
+                StartCoroutine(readLoraResponse(writingTextBox.text));
         }
         writingTextBox.text = "";
     }
@@ -254,6 +259,7 @@ public class Animation_Script : MonoBehaviour
     {
         using (HttpClient client = new HttpClient())
         {
+            loop_bodyAnimation("thinking");
 
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {APIKey}");
            client.DefaultRequestHeaders.Add("OpenAI-Organization", organization);
@@ -290,10 +296,10 @@ public class Animation_Script : MonoBehaviour
             }
             else
             {
-                UnityEngine.Debug.LogError($"Chat GPT API request failed with status code: {response.StatusCode}");
-
-                if (response.StatusCode.ToString() == "TooManyRequests") {
-                    Talk("Lo lamento, ahora mismo ya no me encuentro disponible para responder peticiones, intenta más tarde");
+                UnityEngine.Debug.Log($"Chat GPT API request failed with status code: {response.StatusCode}");
+             if(response.StatusCode .ToString() == "TooManyRequests")
+                { 
+                Talk("Lo lamento, ahora mismo ya no me encuentro disponible para responder peticiones, intenta más tarde");
                 }
                 else
                 {
@@ -355,6 +361,15 @@ public class Animation_Script : MonoBehaviour
                 if (!fristCommand.ContainsKey(command.nombre))
                 {
                     fristCommand.Add($"abre {command.nombre}", OpenWordApp);
+
+                    Transform child = CommandElement.transform.GetChild(0);
+                    Text itemText = child.GetComponent<Text>();
+                    if (itemText!=null) {
+                        itemText.text = command.nombre;
+                        UnityEngine.Debug.Log("encontrado");
+                    }
+                    GameObject item = Instantiate(CommandElement, ScrollListCommand);
+
                 }
             });
         }
@@ -362,14 +377,21 @@ public class Animation_Script : MonoBehaviour
     //-----generic command open
     public void OpenWordApp()
     {
-        StartCoroutine(no_loop_bodyGENERICANIM("open_app","open_app"));
         try
         {
-             Process.Start(nameAppToOpen+".exe");
+            StartCoroutine(no_loop_bodyGENERICANIM("open_app","open_app"));
+            ProcessStartInfo theProgram = new ProcessStartInfo();
+            string file = nameAppToOpen + ".exe";
+
+            theProgram.FileName = file;
+            theProgram.Arguments = DateTime.Now.ToString("yyyyMMddHHmmss"); //generate unique argument
+            Process.Start(theProgram);
+
         }catch (Exception e)
         {
             UnityEngine.Debug.Log(e.Message);
-            Talk($"Lo siento, no he podido abrir {nameAppToOpen}");
+           string speechFailToOpen = $"Lo siento, no he podido abrir {nameAppToOpen}, verifique que el nombre de la aplicación sea el correcto observando la ubicación del archivo en cuesrión";
+            Talk(speechFailToOpen);
         }
     }
     //write json
