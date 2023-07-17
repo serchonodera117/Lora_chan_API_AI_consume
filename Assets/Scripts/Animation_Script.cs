@@ -361,17 +361,13 @@ public class Animation_Script : MonoBehaviour
                 if (!fristCommand.ContainsKey(command.nombre))
                 {
                     fristCommand.Add($"abre {command.nombre}", OpenWordApp);
-
-                    Transform child = CommandElement.transform.GetChild(0);
-                    Text itemText = child.GetComponent<Text>();
-                    if (itemText!=null) {
-                        itemText.text = command.nombre;
-                        UnityEngine.Debug.Log("encontrado");
-                    }
                     GameObject item = Instantiate(CommandElement, ScrollListCommand);
+                    TextMeshProUGUI nameCommand = item.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                    nameCommand.text = command.nombre;
 
                 }
             });
+                    UnityEngine.GameObject.Destroy(CommandElement);
         }
     }
     //-----generic command open
