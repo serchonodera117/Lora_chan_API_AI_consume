@@ -39,6 +39,7 @@ public class Animation_Script : MonoBehaviour
     private bool isDictationActive = false;
     private bool isComandActive = false;
     private bool isComandSettinsActive = false;
+   
 
     private Dictionary<string, Action> fristCommand;
     private KeywordRecognizer voicerecognicer;
@@ -57,6 +58,7 @@ public class Animation_Script : MonoBehaviour
     public GameObject panelCommands;
     public Transform ScrollListCommand;
     public GameObject CommandElement;
+    public TMP_InputField commandToADD;
 
     //----comand voice variable string
     private string nameAppToOpen = "";
@@ -355,7 +357,7 @@ public class Animation_Script : MonoBehaviour
         {
             string json = File.ReadAllText(ruta);
             CommandData data = JsonUtility.FromJson<CommandData>(json);
-
+            CommandElement.gameObject.SetActive(true);
             data.commandList.ForEach(command =>
             {
                 if (!fristCommand.ContainsKey(command.nombre))
@@ -364,10 +366,10 @@ public class Animation_Script : MonoBehaviour
                     GameObject item = Instantiate(CommandElement, ScrollListCommand);
                     TextMeshProUGUI nameCommand = item.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
                     nameCommand.text = command.nombre;
-
                 }
             });
-                    UnityEngine.GameObject.Destroy(CommandElement);
+            CommandElement.gameObject.SetActive(false);
+                    //UnityEngine.GameObject.Destroy(CommandElement);
         }
     }
     //-----generic command open
@@ -395,21 +397,25 @@ public class Animation_Script : MonoBehaviour
     {
         string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
 
-        if (File.Exists(ruta))
+        if (File.Exists(ruta) && !string.IsNullOrEmpty(commandToADD.text))
         {
             string json = File.ReadAllText(ruta);
             CommandData data = JsonUtility.FromJson<CommandData>(json);
-            data.commandList.Add(
-                    new Commando
-                    {
-                        nombre = "brave"
-                    }
-                ); 
-           var updatedJson = JsonUtility.ToJson(data);
-            File.WriteAllText(ruta, updatedJson);
-            UnityEngine.Debug.Log(updatedJson);
+           
+            if (!data.commandList.Exists(item => item.nombre == commandToADD.text))
+            {
+                data.commandList.Add(
+                        new Commando
+                        {
+                            nombre = commandToADD.text
+                        }
+                    ); 
+               var updatedJson = JsonUtility.ToJson(data);
+                File.WriteAllText(ruta, updatedJson);
+                commandToADD.text = "";
+            }
         }
-        else
+        else if(!string.IsNullOrEmpty(commandToADD.text))
         {
             UnityEngine.Debug.Log("File DOES NOT EXIST");
 
@@ -419,14 +425,59 @@ public class Animation_Script : MonoBehaviour
                 {
                     new Commando
                     {
-                        nombre="chrome"
+                        nombre = commandToADD.text
                     }
                 }
             };
             var json = JsonUtility.ToJson(DataCommand);
             File.WriteAllText(ruta, json);
+            commandToADD.text = "";
         }
 
+        UpdateCommandList();
+    }
+
+    public void deleteCommand(GameObject gameOBJ){
+        string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
+        
+       
+        TextMeshProUGUI name = gameOBJ.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        UnityEngine.Debug.Log(name.text);
+        if(name != null)
+        {
+            string json = File.ReadAllText(ruta);
+            CommandData data = JsonUtility.FromJson<CommandData>(json);
+            
+            var elemenToDelete = data.commandList.Find(a => a.nombre == name.text);
+            data.commandList.Remove(elemenToDelete);
+
+            var updatedJson = JsonUtility.ToJson(data);
+            File.WriteAllText(ruta, updatedJson);
+
+            UnityEngine.GameObject.Destroy(gameOBJ);
+            UpdateCommandList();
+        }
+    }
+
+    public void UpdateCommandList()
+    {
+        fristCommand.Clear();
+        for(int i = ScrollListCommand.childCount-1; i > 0; i--)
+        {
+            Transform child = ScrollListCommand.GetChild(i);
+              UnityEngine.GameObject.Destroy(child.gameObject);
+        }
+        fristCommand.Add("lora chan", prepareTotakeInstructions);
+        fristCommand.Add("lora", prepareTotakeInstructions);
+        
+        LoadSavedCommnads();
+
+        voicerecognicer.Stop();
+        voicerecognicer.Dispose();
+        voicerecognicer = new KeywordRecognizer(fristCommand.Keys.ToArray());
+        voicerecognicer.OnPhraseRecognized += onRecognizeLORAcommand;
+        
+        if(isListening) voicerecognicer.Start();
     }
 
 }
@@ -442,6 +493,8 @@ public class Commando
 public class CommandData
 {
     public List<Commando> commandList;
+    public string OrganizationCredentials;
+    public string ApiKey;
 }
 
 [System.Serializable]
