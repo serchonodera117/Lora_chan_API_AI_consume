@@ -267,6 +267,7 @@ public class Animation_Script : MonoBehaviour
            client.DefaultRequestHeaders.Add("OpenAI-Organization", organization);
             var requestData = new ChatGptRequestData
             {
+                model = "gpt-3.5-turbo",
                 messages = new ChatGptMessage[]
                 {
                     new ChatGptMessage
@@ -279,8 +280,7 @@ public class Animation_Script : MonoBehaviour
                       role="user",
                       content = message
                     }
-                },
-                model = "gpt-3.5-turbo"
+                }
             };
             var json = JsonUtility.ToJson(requestData);
             UnityEngine.Debug.Log(message);
@@ -299,7 +299,9 @@ public class Animation_Script : MonoBehaviour
             else
             {
                 UnityEngine.Debug.Log($"Chat GPT API request failed with status code: {response.StatusCode}");
-             if(response.StatusCode .ToString() == "TooManyRequests")
+                UnityEngine.Debug.Log(response.ToSafeString());
+
+                if (response.StatusCode .ToString() == "TooManyRequests")
                 { 
                 Talk("Lo lamento, ahora mismo ya no me encuentro disponible para responder peticiones, intenta más tarde");
                 }
@@ -314,7 +316,6 @@ public class Animation_Script : MonoBehaviour
     }
 
   
-
     private IEnumerator readLoraResponse(string message)
     {
         string input = message;
