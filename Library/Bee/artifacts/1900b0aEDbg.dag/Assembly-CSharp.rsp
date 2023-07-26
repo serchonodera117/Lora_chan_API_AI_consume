@@ -121,6 +121,7 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Interop.SpeechLib.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -328,6 +329,8 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@1.2.3/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.8.0/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1900b0aEDbg.dag/lmnt.unity.editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aEDbg.dag/lmnt.unity.runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UniGLTF.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UniHumanoid.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.EditorCoroutines.Editor.ref.dll"
@@ -359,6 +362,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.2.17f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Animation_Script.cs"
+"Assets/Scripts/UnityMainThreadDispatcher.cs"
 -langversion:9.0
 
 /deterministic

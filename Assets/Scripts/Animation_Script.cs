@@ -169,9 +169,13 @@ public class Animation_Script : MonoBehaviour
             loop_FaceExpressions("face_base");
             isComandActive = false;
             voicerecognicer.Stop();
+
+            if (isDictationActive)
+            {
+            isDictationActive = false;
             dictationRecognizer.Stop();
             dictationRecognizer.Dispose();
-            //dictationRecognizer.Stop();
+            }
         }
     }
 
@@ -245,6 +249,8 @@ public class Animation_Script : MonoBehaviour
         }
 
         StartCoroutine(readLoraResponse(text));
+       // StartCoroutine(openNotepad(text));
+
     }
     //request of buttom
     public void requestByButton()
@@ -315,23 +321,58 @@ public class Animation_Script : MonoBehaviour
         }
     }
 
-  
+   public async Task<string> AI_chatBotAPI_REQUEST(string message)
+    {
+        var client = new HttpClient();
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Get,
+            RequestUri = new Uri($"https://chat-gpt-ai-bot.p.rapidapi.com/GenerateAIWritter?prompt={message}"),
+            Headers =
+                {
+                    { "X-RapidAPI-Key", "ab4f485efcmsh5a9715ecc7dd2b1p127f96jsn2f2400b8c036" },
+                    { "X-RapidAPI-Host", "chat-gpt-ai-bot.p.rapidapi.com" },
+                },
+        };
+
+        try
+        {
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                UnityEngine.Debug.Log(body);
+                if (body != null) { return body; }
+                else return null;
+            }
+        }
+        catch(Exception e){
+            Talk(e.Message.ToString() + " por el momento ya no me encuentro disponible, vuelve más tarde");
+            return null;
+        }
+ 
+    }
+
     private IEnumerator readLoraResponse(string message)
     {
+        loop_bodyAnimation("thinking");
         string input = message;
-        Task<string> responseTask = SendChatGptRequest(input); 
-        
+        // Task<string> responseTask = SendChatGptRequest(input); 
+         Task<string> responseTask = AI_chatBotAPI_REQUEST(input); 
+
         yield return new WaitUntil(()=> responseTask.IsCompleted); 
         
         string response = responseTask.Result;
         if (response!=null)
         {
+            Talk(response.ToSafeString());
             StartCoroutine(openNotepad(response.ToSafeString()));
             UnityEngine.Debug.Log(response);
         }
     }
     //--------------------------------Open and Write Noteblock
     private IEnumerator openNotepad(string writedMessage){
+        StartCoroutine(no_loop_bodyGENERICANIM("open_app", "open_app"));
         string tempFilepath = Path.GetTempFileName();
         File.WriteAllText(tempFilepath, writedMessage);
 
