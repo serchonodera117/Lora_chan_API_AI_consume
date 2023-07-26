@@ -330,8 +330,8 @@ public class Animation_Script : MonoBehaviour
             RequestUri = new Uri($"https://chat-gpt-ai-bot.p.rapidapi.com/GenerateAIWritter?prompt={message}"),
             Headers =
                 {
-                    { "X-RapidAPI-Key", "ab4f485efcmsh5a9715ecc7dd2b1p127f96jsn2f2400b8c036" },
-                    { "X-RapidAPI-Host", "chat-gpt-ai-bot.p.rapidapi.com" },
+                    { "X-RapidAPI-Key", "" },
+                    { "X-RapidAPI-Host", "" },
                 },
         };
 
@@ -363,8 +363,12 @@ public class Animation_Script : MonoBehaviour
         yield return new WaitUntil(()=> responseTask.IsCompleted); 
         
         string response = responseTask.Result;
+
         if (response!=null)
         {
+        UnityEngine.Debug.Log($"response TASK: {responseTask}");
+        UnityEngine.Debug.Log($"response string: {responseTask.Result}");
+        
             Talk(response.ToSafeString());
             StartCoroutine(openNotepad(response.ToSafeString()));
             UnityEngine.Debug.Log(response);
