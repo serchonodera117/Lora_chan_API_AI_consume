@@ -331,7 +331,7 @@ public class Animation_Script : MonoBehaviour
             Headers =
                 {
                     { "X-RapidAPI-Key", "" },
-                    { "X-RapidAPI-Host", "" },
+                    { "X-RapidAPI-Host", "chat-gpt-ai-bot.p.rapidapi.com" },
                 },
         };
 
@@ -366,11 +366,26 @@ public class Animation_Script : MonoBehaviour
 
         if (response!=null)
         {
-        UnityEngine.Debug.Log($"response TASK: {responseTask}");
-        UnityEngine.Debug.Log($"response string: {responseTask.Result}");
-        
+            string responseText = "";
+            string code = "no";
+            int characterCounter = 0;
+            int codeFristIndex = response.IndexOf("```");
+
+            
+
+            for(int i = 0; i < response.Length; i++)
+            {
+                responseText += response[i].ToString();
+                if (characterCounter > 77)
+                {
+                    response += "\n";
+                    characterCounter = 0;
+                }
+                characterCounter++;
+            }
+
             Talk(response.ToSafeString());
-            StartCoroutine(openNotepad(response.ToSafeString()));
+            StartCoroutine(openNotepad(responseText));
             UnityEngine.Debug.Log(response);
         }
     }
