@@ -28,6 +28,8 @@ public class Animation_Script : MonoBehaviour
     private const string ChatGPTEndpoint = "https://api.openai.com/v1/chat/completions";
     private const string organization = ""; //your Organization ID
 
+    private string rapidApiKey = "";//rapid api api key for  ai
+
 
     [DllImport("user32.dll")]
     private static extern bool SetForegroundWindow(IntPtr hWnd);
@@ -39,7 +41,9 @@ public class Animation_Script : MonoBehaviour
     private bool isDictationActive = false;
     private bool isComandActive = false;
     private bool isComandSettinsActive = false;
-   
+    private bool isApiKeyActive = false;
+
+
 
     private Dictionary<string, Action> fristCommand;
     private KeywordRecognizer voicerecognicer;
@@ -54,11 +58,14 @@ public class Animation_Script : MonoBehaviour
     public Sprite listenigDisabled;
     public Button btnListening;
     public TextMeshProUGUI listeningMessage;
+    public TextMeshProUGUI savedApiKey;
     public TMP_InputField writingTextBox;
     public GameObject panelCommands;
+    public GameObject panelApiKey;
     public Transform ScrollListCommand;
     public GameObject CommandElement;
     public TMP_InputField commandToADD;
+    public TMP_InputField apiKeyToAdd;
 
     //----comand voice variable string
     private string nameAppToOpen = "";
@@ -67,12 +74,14 @@ public class Animation_Script : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         panelCommands.SetActive(false);//ocultar
+        panelApiKey.SetActive(false);
 
         writingTextBox.text = "";
         fristCommand = new Dictionary<string, Action>();
         fristCommand.Add("lora chan", prepareTotakeInstructions);
         fristCommand.Add("lora", prepareTotakeInstructions);
         LoadSavedCommnads();
+        LoadApiKey();
 
         voicerecognicer = new KeywordRecognizer(fristCommand.Keys.ToArray());
         voicerecognicer.OnPhraseRecognized += onRecognizeLORAcommand;
@@ -330,7 +339,7 @@ public class Animation_Script : MonoBehaviour
             RequestUri = new Uri($"https://chat-gpt-ai-bot.p.rapidapi.com/GenerateAIWritter?prompt={message}"),
             Headers =
                 {
-                    { "X-RapidAPI-Key", "" },
+                    { "X-RapidAPI-Key", rapidApiKey },
                     { "X-RapidAPI-Host", "chat-gpt-ai-bot.p.rapidapi.com" },
                 },
         };
@@ -378,7 +387,7 @@ public class Animation_Script : MonoBehaviour
                 responseText += response[i].ToString();
                 if (characterCounter > 77)
                 {
-                    response += "\n";
+                    responseText += "\n";
                     characterCounter = 0;
                 }
                 characterCounter++;
@@ -431,6 +440,56 @@ public class Animation_Script : MonoBehaviour
             });
             CommandElement.gameObject.SetActive(false);
                     //UnityEngine.GameObject.Destroy(CommandElement);
+        }
+    }
+
+    //-----------Load ApiKey
+    public void cotrollerContainerApiCredential()
+    {
+        isApiKeyActive = !isApiKeyActive;
+        panelApiKey.SetActive(isApiKeyActive);
+    }
+    public void LoadApiKey()
+    {
+        string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
+        if (File.Exists(ruta))
+        {
+            string json = File.ReadAllText (ruta);
+            CommandData data = JsonUtility.FromJson<CommandData> (json);
+
+            rapidApiKey = (!string.IsNullOrEmpty(data.ApiKey))? data.ApiKey : "You don't have any Api key yet";
+            savedApiKey.text = rapidApiKey;
+            apiKeyToAdd.text = (!string.IsNullOrEmpty(data.ApiKey)) ? data.ApiKey : ""; 
+        }
+    }
+
+    public void SaveApiKey() {
+        string ruta = Path.Combine(Application.persistentDataPath, "LoraCommandsData.json");
+      
+        if (File.Exists(ruta) && !string.IsNullOrEmpty(apiKeyToAdd.text))
+        {
+            string json = File.ReadAllText(ruta);
+            CommandData data = JsonUtility.FromJson<CommandData>(json);
+            data.ApiKey = apiKeyToAdd.text;
+            
+            savedApiKey.text = (!string.IsNullOrEmpty(data.ApiKey))? data.ApiKey : "You don't have any Api key yet";
+            rapidApiKey = apiKeyToAdd.text;
+
+            var updatedJsonData = JsonUtility.ToJson(data);
+            File.WriteAllText(ruta, updatedJsonData);
+        }
+        else if (!string.IsNullOrEmpty(apiKeyToAdd.text))
+        {
+            var DataCommand = new CommandData
+            {
+               ApiKey = apiKeyToAdd.text
+            };
+
+            var json = JsonUtility.ToJson(DataCommand);
+            File.WriteAllText(ruta, json);
+
+            rapidApiKey = apiKeyToAdd.text;
+            savedApiKey.text = rapidApiKey;
         }
     }
     //-----generic command open
