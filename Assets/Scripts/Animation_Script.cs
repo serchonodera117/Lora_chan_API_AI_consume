@@ -16,10 +16,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using UnityEditor.VersionControl;
 using System.IO;
 using Unity.VisualScripting;
-using TMPro.EditorUtilities;
 
 
 public class Animation_Script : MonoBehaviour
