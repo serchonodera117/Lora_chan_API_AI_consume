@@ -21,7 +21,7 @@ To request or ask questions to Lora Chan you will need to save your API key into
    > Click this button, and it'll open a modal with an input text box: 
           ![what_to_click_credential](https://github.com/serchonodera117/Lora_chan_API_AI_consume/assets/62153337/1bc7f012-432c-4259-accb-ba7177c5eeb3)
 
-   > Paste your API key into the input text box, then click add api key, and your api key will be saved into Lora chan Files. You can edit it in the same wa:
+   > Paste your API key into the input text box, then click add api key, and your api key will be saved into Lora chan Files. You can edit it in the same way: 
           ![seting_api_key](https://github.com/serchonodera117/Lora_chan_API_AI_consume/assets/62153337/ef47b843-d52a-49fd-b3d9-0a7c042970ca)
           ![api_already_set](https://github.com/serchonodera117/Lora_chan_API_AI_consume/assets/62153337/f6310fd0-4701-4269-b383-be207fd661d9)
       
