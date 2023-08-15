@@ -34,5 +34,5 @@ You can add N commands you want, but be sure about the correct name was written 
   after that, you must say whatever you want to ask or request, once you finish talking, Lora chan will wait approximately 1 or 2 seconds to stops to listening you and will think the
   answer for you, once the answer or response is already finished, Lora chan will open a text file with the response and she will red it for you
       > To make Lora Chan listens to you, click the ear button: 
-        ![listening](https://github.com/serchonodera117/Lora_chan_API_AI_consume/assets/62153337/20a0b519-95e4-4ead-8202-0e985ecf28d7)
+          ![listening](https://github.com/serchonodera117/Lora_chan_API_AI_consume/assets/62153337/20a0b519-95e4-4ead-8202-0e985ecf28d7)
 
