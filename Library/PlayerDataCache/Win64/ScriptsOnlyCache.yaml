@@ -160,71 +160,71 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1618}
+      Script: {instanceID: 1624}
     - Class: 114
-      Script: {instanceID: 1760}
+      Script: {instanceID: 1766}
     - Class: 114
-      Script: {instanceID: 1822}
+      Script: {instanceID: 1828}
     - Class: 114
-      Script: {instanceID: 2332}
+      Script: {instanceID: 2338}
     - Class: 114
-      Script: {instanceID: 2488}
+      Script: {instanceID: 2494}
     - Class: 114
-      Script: {instanceID: 2860}
+      Script: {instanceID: 2866}
     - Class: 114
-      Script: {instanceID: 2952}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 2966}
+      Script: {instanceID: 2972}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 3094}
     - Class: 114
-      Script: {instanceID: 3432}
+      Script: {instanceID: 3438}
     - Class: 114
-      Script: {instanceID: 3646}
+      Script: {instanceID: 3652}
     - Class: 114
-      Script: {instanceID: 3670}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 3780}
+      Script: {instanceID: 3786}
     - Class: 114
-      Script: {instanceID: 4642}
+      Script: {instanceID: 4648}
     - Class: 114
-      Script: {instanceID: 4658}
+      Script: {instanceID: 4664}
     - Class: 114
-      Script: {instanceID: 4730}
+      Script: {instanceID: 4736}
     - Class: 114
-      Script: {instanceID: 4774}
+      Script: {instanceID: 4780}
     - Class: 114
-      Script: {instanceID: 4860}
+      Script: {instanceID: 4866}
     - Class: 114
-      Script: {instanceID: 4980}
+      Script: {instanceID: 4986}
     - Class: 114
-      Script: {instanceID: 5610}
+      Script: {instanceID: 5616}
     - Class: 114
-      Script: {instanceID: 5672}
+      Script: {instanceID: 5678}
     - Class: 114
-      Script: {instanceID: 5838}
+      Script: {instanceID: 5842}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5912}
     - Class: 114
-      Script: {instanceID: 6006}
+      Script: {instanceID: 6010}
     - Class: 114
-      Script: {instanceID: 6512}
+      Script: {instanceID: 6516}
     - Class: 114
-      Script: {instanceID: 6658}
+      Script: {instanceID: 6662}
     - Class: 114
-      Script: {instanceID: 6732}
+      Script: {instanceID: 6736}
     - Class: 114
-      Script: {instanceID: 7150}
+      Script: {instanceID: 7154}
     - Class: 114
-      Script: {instanceID: 7598}
+      Script: {instanceID: 7602}
     - Class: 114
-      Script: {instanceID: 7622}
+      Script: {instanceID: 7626}
     - Class: 114
-      Script: {instanceID: 8390}
+      Script: {instanceID: 8394}
     - Class: 114
-      Script: {instanceID: 8584}
+      Script: {instanceID: 8588}
     - Class: 114
-      Script: {instanceID: 8940}
+      Script: {instanceID: 8944}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1369,4 +1369,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/Personal/Juegos/Lora_chan_versions/Lora_chan_AI.exe
+  playerPath: D:/LENGUAJES_DE_PROGRAMACION/Unity/Lora_chan_builded_versions/Lora_chan_AI.exe
