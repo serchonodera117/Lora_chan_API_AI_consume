@@ -2,6 +2,7 @@
 This is a project that I started to develop, the principal goal to reach is to build an AI interface by using a bot character created in unity to emulate an AI behavior. 
 In other words, this is an interface of an AI API (probably chat gpt), emulating a waifubot. 
 
+> You can download the Beta version 0.1.5 here [Lora-chan version 0.1.5](https://serch-onodera.itch.io/lora-chan)
 ## **Instructions**
 
 ### **1.- Set Api key to Lora Chan**
