@@ -243,7 +243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.997879, y: -16.33081}
+  m_AnchoredPosition: {x: 0.99786377, y: -16.33081}
   m_SizeDelta: {x: 397.8293, y: 501.0389}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &16649195
@@ -4349,7 +4349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.3538, y: -320}
+  m_AnchoredPosition: {x: -8.353821, y: -320}
   m_SizeDelta: {x: -140.3375, y: 124.49762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382053301
@@ -6064,7 +6064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.57980347, y: 17.650513}
+  m_AnchoredPosition: {x: 0.579834, y: 17.650513}
   m_SizeDelta: {x: 29.0104, y: 27.3011}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701883814
@@ -6216,7 +6216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Developed by Serch Onodera. \xA92023. \nAll rights reserved."
+  m_text: "Developed by Serch Onodera. \xA92024. \nAll rights reserved.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

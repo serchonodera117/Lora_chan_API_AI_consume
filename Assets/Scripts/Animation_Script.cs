@@ -36,6 +36,7 @@ public class Animation_Script : MonoBehaviour
     private bool isListening = false;
     private bool isTalking = false;
     private SpVoice voice = new SpVoice();
+
     private bool isDictationActive = false;
     private bool isComandActive = false;
     private bool isComandSettinsActive = false;
